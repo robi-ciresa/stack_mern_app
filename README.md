@@ -41,11 +41,11 @@ npm start
 cd frontend
 npm start
 
-###Contributi
+*Contributi*
 Contributi sono benvenuti! Se desideri contribuire, apri una richiesta di pull o contattami direttamente.
 
-##Licenza
+*Licenza*
 Questo progetto è concesso in licenza sotto la MIT License.
 
-##Contatti
+*Contatti*
 Per ulteriori informazioni, puoi contattarmi su robertaciresa.ch@gmail.com
