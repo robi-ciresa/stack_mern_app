@@ -19,6 +19,7 @@ Il progetto è sviluppato utilizzando lo stack MERN (MongoDB, Express, React, No
 - **Database**: MongoDB
 
 ### Prerequisiti
+- React
 - Node.js
 - MongoDB
 
