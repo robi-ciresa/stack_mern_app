@@ -1,0 +1,35 @@
+.footer-custom {
+    background: linear-gradient(to bottom, #f8fbff, #83c0f9ef); /* Stesso colore di sfondo della navbar */
+    color: #000000; /* Testo nero come nella navbar */
+    font-family: 'Georgia', serif; /* Stesso font della navbar */
+}
+
+.footer-title {
+    font-size: 25px; /* Stesso stile per il titolo */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer-subtitle {
+    font-size: 20px; /* Stile per il sottotitolo */
+    font-weight: normal;
+}
+
+.footer-link {
+    color: #000000; /* Colore dei link nel footer */
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #007bff; /* Cambia colore al passaggio del mouse */
+}
+
+.footer-contact p {
+    margin: 0; /* Margine per i contatti */
+}
+
+.footer-copyright {
+    padding: 10px 0;
+    font-size: 14px;
+    color: #000000; /* Colore nero per il testo */
+}

@@ -1,0 +1,46 @@
+.navbar-custom {
+    background: linear-gradient(to top, #f8fbff, #83c0f9ef);
+    min-height: 150px;
+}
+
+.navbar-brand-title {
+    font-family: 'Georgia', serif; 
+    font-size: 25px;
+    font-weight: bold;
+    color: #000000; 
+    text-align: left;
+    margin-left: 20px;
+}
+
+.navbar-brand-subtitle {
+    font-family: 'Georgia', serif; 
+    font-size: 20px;
+    font-weight: normal;
+    color: #000000; 
+    text-align: left;
+    margin-left: 20px;
+}
+
+.navbar-nav-link {
+    font-family: 'Georgia', serif; 
+    font-size: 18px;
+    font-weight: normal;
+    color: #000000; 
+    margin-left: 10px;
+}
+
+.navbar-nav-link:hover {
+    color: #31568e; 
+}
+
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: right; 
+        margin-right: 20px;
+    }
+}

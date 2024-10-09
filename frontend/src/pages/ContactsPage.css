@@ -1,0 +1,11 @@
+.contacts-volunteers, .contacts-general {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.volunteer-card {
+    margin: 20px;
+}
