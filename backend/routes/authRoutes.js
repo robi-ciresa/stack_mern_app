@@ -30,7 +30,7 @@ router.get('/user', protect, getUserInfo);
 
 // @desc    Accept donations
 // @route   PUT /api/auth/donate
-// @access  Public
-router.put('/donate', donate);
+// @access  Private
+router.put('/donate',protect, donate);
 
 module.exports = router;

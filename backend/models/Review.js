@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
-    user: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: [true, 'User ID is required'] 
-    },
     name: { 
         type: String, 
         required: [true, 'Name is required'] 

@@ -127,7 +127,7 @@ const getUserAdoptions = async (req, res) => {
 
 // @desc    Update the total donations if the user is authenticated
 // @route   PUT /api/auth/donate
-// @access  Public
+// @access  Private
 const donate = async (req, res) => {
     const { amount } = req.body;
 
@@ -143,8 +143,10 @@ const donate = async (req, res) => {
                 return res.status(404).json({ message: 'User not found' });
             }
 
+            console.log('Current total donations before update:', user.totalDonations);
             user.totalDonations += amount;
             await user.save();
+            console.log('Total donations after update:', user.totalDonations);
 
             return res.json({ 
                 message: 'Donation recorded successfully, total donations updated', 

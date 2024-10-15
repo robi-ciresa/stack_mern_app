@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     puppies: [],
-    puppyDetails: null,  // Per i dettagli di un singolo cucciolo
+    puppyDetails: null,
     loading: false,
     error: null,
 };
@@ -11,7 +11,6 @@ const puppySlice = createSlice({
     name: 'puppies',
     initialState,
     reducers: {
-        // Fetch di tutti i cuccioli
         fetchPuppiesRequest: (state) => {
             state.loading = true;
             state.error = null;
@@ -26,7 +25,6 @@ const puppySlice = createSlice({
             state.loading = false;
         },
 
-        // Fetch di un singolo cucciolo (dettagli)
         fetchPuppyDetailsRequest: (state) => {
             state.loading = true;
             state.error = null;
@@ -41,12 +39,10 @@ const puppySlice = createSlice({
             state.loading = false;
         },
 
-        // Aggiungi un cucciolo
         addPuppy: (state, action) => {
             state.puppies.push(action.payload);
         },
 
-        // Modifica un cucciolo
         updatePuppy: (state, action) => {
             const index = state.puppies.findIndex(puppy => puppy._id === action.payload._id);
             if (index !== -1) {
@@ -54,7 +50,6 @@ const puppySlice = createSlice({
             }
         },
 
-        // Elimina un cucciolo
         deletePuppy: (state, action) => {
             state.puppies = state.puppies.filter(puppy => puppy._id !== action.payload);
         },

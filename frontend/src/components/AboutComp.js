@@ -13,6 +13,7 @@ const AboutComp = ({ onScrollToForm }) => {
             try {
                 const response = await fetch('http://localhost:5000/api/reviews');
                 const data = await response.json();
+                console.log('Fetched reviews:', data);
                 setReviews(data);
             } catch (error) {
                 console.error('Error retrieving reviews:', error);
@@ -23,13 +24,17 @@ const AboutComp = ({ onScrollToForm }) => {
     }, []);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentReviewIndex((prevIndex) =>
-                prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 10000);
+        if (reviews.length > 0) {
+            const interval = setInterval(() => {
+                setCurrentReviewIndex((prevIndex) => {
+                    const newIndex = (prevIndex + 1) % reviews.length;
+                    console.log('Changing to review index:', newIndex);
+                    return newIndex;
+                });
+            }, 10000);
 
-        return () => clearInterval(interval);
+            return () => clearInterval(interval);
+        }
     }, [reviews]);
 
     const renderStars = (rating) => {
@@ -48,18 +53,21 @@ const AboutComp = ({ onScrollToForm }) => {
         }
     };
 
+    const currentReview = reviews[currentReviewIndex];
+    console.log('Current review:', currentReview);
+
     return (
         <div className="align-center">
             <section className="about-review">
                 <h3>Adopter Reviews</h3>
-                {reviews.length > 0 ? (
-                    <div className="review-box">
-                        <p><strong>{reviews[currentReviewIndex]?.name} says:</strong></p>
-                        <p>"{reviews[currentReviewIndex]?.text}"</p>
-                        <div className="rating">
-                            {renderStars(reviews[currentReviewIndex]?.rating)}
-                        </div>
+                {currentReview ? (
+                    <div key={currentReview._id} className="review-box">
+                    <p><strong>{currentReview.name} says:</strong></p>
+                    <p>"{currentReview.text}"</p>
+                    <div className="rating">
+                        {renderStars(currentReview.rating)}
                     </div>
+                </div>
                 ) : (
                     <p>No reviews available.</p>
                 )}

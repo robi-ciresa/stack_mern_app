@@ -30,7 +30,8 @@ const ContactsComp = () => {
             });
     
             const data = await response.json();
-    
+            console.log('Response data:', data);
+
             if (response.ok) {
                 if (token) {
                     alert('Donation recorded successfully! Total donations: ' + data.totalDonations);

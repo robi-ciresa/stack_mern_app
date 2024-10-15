@@ -23,11 +23,13 @@ const ManageVolunteers = () => {
 
     const handleCreateVolunteer = async (e) => {
         e.preventDefault();
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch('http://localhost:5000/api/volunteers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(newVolunteer),
             });
@@ -43,12 +45,17 @@ const ManageVolunteers = () => {
             setIsError(true);
         }
     };
-
+    
     const handleDeleteVolunteer = async (id) => {
         if (window.confirm('Are you sure you want to delete this volunteer?')) {
+            const token = localStorage.getItem('token');
             try {
                 const response = await fetch(`http://localhost:5000/api/volunteers/${id}`, {
                     method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
                 });
                 if (!response.ok) {
                     throw new Error('Error deleting volunteer.');
@@ -61,7 +68,7 @@ const ManageVolunteers = () => {
                 setIsError(true);
             }
         }
-    };
+    };    
 
     return (
         <div className="manage-volunteers">

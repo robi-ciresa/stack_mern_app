@@ -5,7 +5,7 @@ const Review = require('../models/Review');
 // @access  Public
 const getReviews = async (req, res) => {
     try {
-        const reviews = await Review.find();  // Not necessary to populate the user
+        const reviews = await Review.find();
         res.json(reviews);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -18,9 +18,9 @@ const getReviews = async (req, res) => {
 const createReview = async (req, res) => {
     const { name, text, rating } = req.body;
 
-    if (!name || !text || !rating) {
+    if (!name || !text || rating === undefined) {
         return res.status(400).json({ message: 'All fields are required' });
-    }
+    }    
 
     const newReview = new Review({
         name,
