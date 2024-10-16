@@ -13,7 +13,7 @@ const ManageVolunteers = () => {
 
     const fetchVolunteers = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/volunteers');
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/volunteers`);
             const data = await response.json();
             setVolunteers(data);
         } catch (error) {
@@ -25,7 +25,7 @@ const ManageVolunteers = () => {
         e.preventDefault();
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:5000/api/volunteers', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/volunteers`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const ManageVolunteers = () => {
         if (window.confirm('Are you sure you want to delete this volunteer?')) {
             const token = localStorage.getItem('token');
             try {
-                const response = await fetch(`http://localhost:5000/api/volunteers/${id}`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/volunteers/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,

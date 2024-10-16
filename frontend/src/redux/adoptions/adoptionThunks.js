@@ -7,7 +7,7 @@ export const fetchAdoptionRequests = createAsyncThunk(
         try {
             dispatch(fetchAdoptionRequestsRequest());
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/api/adoptions', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/adoptions`, {
                 headers: {
                     'Authorization': `Bearer ${token}`, 
                 },
@@ -29,7 +29,7 @@ export const createAdoption = createAsyncThunk(
     async (adoptionData, { dispatch }) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/api/adoptions', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/adoptions`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export const editAdoption = createAsyncThunk(
     async ({ id, updatedRequest }, { dispatch }) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/adoptions/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/adoptions/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export const removeAdoption = createAsyncThunk(
     async (id, { dispatch }) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:5000/api/adoptions/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/adoptions/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,

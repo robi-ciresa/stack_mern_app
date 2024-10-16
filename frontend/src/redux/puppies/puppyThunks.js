@@ -16,7 +16,7 @@ export const fetchPuppies = createAsyncThunk(
     async (_, { dispatch }) => {
         try {
             dispatch(fetchPuppiesRequest());
-            const response = await fetch('http://localhost:5000/api/puppies');
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies`);
             const data = await response.json();
             if (response.ok) {
                 dispatch(fetchPuppiesSuccess(data));
@@ -34,7 +34,7 @@ export const fetchPuppyDetails = createAsyncThunk(
     async (id, { dispatch }) => {
         try {
             dispatch(fetchPuppyDetailsRequest());
-            const response = await fetch(`http://localhost:5000/api/puppies/${id}`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies/${id}`);
             const data = await response.json();
             if (response.ok) {
                 dispatch(fetchPuppyDetailsSuccess(data));
@@ -55,7 +55,7 @@ export const createPuppy = createAsyncThunk(
     async (puppyData, { dispatch }) => {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:5000/api/puppies', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export const editPuppy = createAsyncThunk(
     async ({ id, updatedPuppy }, { dispatch }) => {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`http://localhost:5000/api/puppies/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ export const removePuppy = createAsyncThunk(
     async (id, { dispatch, getState }) => {
         try {
             const token = getState().auth.token;
-            const response = await fetch(`http://localhost:5000/api/puppies/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,

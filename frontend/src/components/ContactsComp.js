@@ -20,7 +20,7 @@ const ContactsComp = () => {
         const token = localStorage.getItem('token');
     
         try {
-            const response = await fetch('http://localhost:5000/api/auth/donate', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/donate`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const ContactsComp = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:5000/api/contact', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/contact`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

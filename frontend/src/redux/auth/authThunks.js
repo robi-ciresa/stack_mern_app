@@ -66,7 +66,7 @@ export const fetchUserFromToken = createAsyncThunk(
             throw new Error('Token not found');
         }
 
-        const response = await fetch('http://localhost:5000/api/auth/user', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/user`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
@@ -86,7 +86,7 @@ export const updateUserPassword = createAsyncThunk(
         const { auth } = getState();
         const token = auth.token;
 
-        const response = await fetch('http://localhost:5000/api/auth/update-password', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/update-password`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ export const fetchUserAdoptions = createAsyncThunk(
             throw new Error('Token not found');
         }
 
-        const response = await fetch('http://localhost:5000/api/auth/adoptions', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/adoptions`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

@@ -35,7 +35,7 @@ const PuppyDetail = () => {
             try {
                 const token = localStorage.getItem('token');
 
-                const response = await fetch(`http://localhost:5000/api/puppies/${puppy._id}/adopt`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/${puppy._id}/adopt`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const PuppyDetail = () => {
                 if (response.ok) {
                     alert('Distance adoption successfully initiated!');
 
-                    await fetch(`http://localhost:5000/api/auth/donate`, { 
+                    await fetch(`${process.env.REACT_APP_API_URL}/api/auth/donate`, { 
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
