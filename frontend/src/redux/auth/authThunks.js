@@ -6,12 +6,13 @@ export const loginUser = createAsyncThunk(
     async (userCredentials, { dispatch }) => {
         try {
             dispatch(loginRequest());
-            const response = await fetch('http://localhost:5000/api/auth/login', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(userCredentials),
+                credentials: 'include',  // Aggiunto
             });
             const data = await response.json();
             if (response.ok) {
@@ -36,12 +37,13 @@ export const registerUser = createAsyncThunk(
     async (userCredentials, { dispatch }) => {
         try {
             dispatch(loginRequest());
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(userCredentials),
+                credentials: 'include',  // Aggiunto
             });
             const data = await response.json();
             if (response.ok) {
@@ -60,7 +62,7 @@ export const fetchUserFromToken = createAsyncThunk(
     'auth/fetchUserFromToken',
     async (_, { getState }) => {
         const { auth } = getState();
-        const token = auth.token; 
+        const token = auth.token;
 
         if (!token) {
             throw new Error('Token not found');
@@ -70,6 +72,7 @@ export const fetchUserFromToken = createAsyncThunk(
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
+            credentials: 'include',  // Aggiunto
         });
         if (response.ok) {
             return await response.json();
@@ -93,6 +96,7 @@ export const updateUserPassword = createAsyncThunk(
                 'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify(passwords),
+            credentials: 'include',  // Aggiunto
         });
         if (response.ok) {
             return await response.json();
@@ -116,8 +120,9 @@ export const fetchUserAdoptions = createAsyncThunk(
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/adoptions`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
+            credentials: 'include',  // Aggiunto
         });
 
         if (response.ok) {

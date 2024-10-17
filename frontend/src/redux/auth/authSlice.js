@@ -11,20 +11,6 @@ const authSlice = createSlice({
         error: null,
     },
     reducers: {
-        loginRequest(state) {
-            state.loading = true;
-        },
-        loginSuccess(state, action) {
-            state.loading = false;
-            state.userInfo = action.payload.user;
-            state.token = action.payload.token; 
-            console.log('Token salvato nello stato:', action.payload.token);
-            localStorage.setItem('token', action.payload.token);
-        },
-        loginFail(state, action) {
-            state.loading = false;
-            state.error = action.payload;
-        },
         logout(state) {
             state.userInfo = null;
             state.token = null;
@@ -81,10 +67,10 @@ const authSlice = createSlice({
         });
         builder.addCase(fetchUserAdoptions.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.error.message; 
+            state.error = action.error.message;
         });
     },
 });
 
-export const { loginRequest, loginSuccess, loginFail, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

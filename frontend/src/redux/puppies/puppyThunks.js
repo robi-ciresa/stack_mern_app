@@ -16,7 +16,9 @@ export const fetchPuppies = createAsyncThunk(
     async (_, { dispatch }) => {
         try {
             dispatch(fetchPuppiesRequest());
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies`, {
+                credentials: 'include',
+            });
             const data = await response.json();
             if (response.ok) {
                 dispatch(fetchPuppiesSuccess(data));
@@ -34,7 +36,9 @@ export const fetchPuppyDetails = createAsyncThunk(
     async (id, { dispatch }) => {
         try {
             dispatch(fetchPuppyDetailsRequest());
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies/${id}`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/puppies/${id}`, {
+                credentials: 'include',
+            });
             const data = await response.json();
             if (response.ok) {
                 dispatch(fetchPuppyDetailsSuccess(data));
@@ -62,6 +66,7 @@ export const createPuppy = createAsyncThunk(
                     'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(puppyData),
+                credentials: 'include',
             });
             const data = await response.json();
             if (response.ok) {
@@ -83,9 +88,10 @@ export const editPuppy = createAsyncThunk(
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` 
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(updatedPuppy),
+                credentials: 'include',
             });
             const data = await response.json();
             if (response.ok) {
@@ -109,6 +115,7 @@ export const removePuppy = createAsyncThunk(
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
             });
             if (response.ok) {
                 dispatch(deletePuppy(id));

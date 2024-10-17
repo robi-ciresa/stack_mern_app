@@ -1,5 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchAdoptionRequestsRequest, fetchAdoptionRequestsSuccess, fetchAdoptionRequestsFail, createAdoptionRequest, updateAdoptionRequest, deleteAdoptionRequest } from './adoptionSlice';
+import { 
+    fetchAdoptionRequestsRequest, 
+    fetchAdoptionRequestsSuccess, 
+    fetchAdoptionRequestsFail, 
+    createAdoptionRequest, 
+    updateAdoptionRequest, 
+    deleteAdoptionRequest 
+} from './adoptionSlice';
 
 export const fetchAdoptionRequests = createAsyncThunk(
     'adoptions/fetchAdoptionRequests',
@@ -9,8 +16,9 @@ export const fetchAdoptionRequests = createAsyncThunk(
             const token = localStorage.getItem('token');
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/adoptions`, {
                 headers: {
-                    'Authorization': `Bearer ${token}`, 
+                    'Authorization': `Bearer ${token}`,
                 },
+                credentials: 'include', // Assicura che i cookie e i token siano inviati correttamente
             });
             if (!response.ok) {
                 const errorData = await response.json();
@@ -36,6 +44,7 @@ export const createAdoption = createAsyncThunk(
                     'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(adoptionData),
+                credentials: 'include', // Aggiunto per inviare i cookie e il token
             });
             if (!response.ok) {
                 const errorData = await response.json();
@@ -62,6 +71,7 @@ export const editAdoption = createAsyncThunk(
                     'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(updatedRequest),
+                credentials: 'include', // Aggiunto per gestire i cookie e il token
             });
             if (!response.ok) {
                 const errorData = await response.json();
@@ -86,6 +96,7 @@ export const removeAdoption = createAsyncThunk(
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
+                credentials: 'include', // Aggiunto per includere i cookie e token
             });
             if (!response.ok) {
                 const errorData = await response.json();
